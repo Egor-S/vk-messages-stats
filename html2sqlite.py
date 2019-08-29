@@ -1,9 +1,12 @@
+import json
 import sqlite3
+
 from utils.parse_messages import get_all_messages
 
-
-sqlite_path = r"C:\Users\Egor\PycharmProjects\vk-messages\messages.sqlite"
-messages_dir = r"C:\Users\Egor\PycharmProjects\vk-messages\archive\messages"
+with open("config.json", 'r') as f:
+    config = json.load(f)
+sqlite_path = config['db_path']
+messages_dir = config['messages_dir']
 encoding = 'windows-1251'
 
 
@@ -32,6 +35,7 @@ def main():
     for msg in messages:
         insert_message(cur, msg)
     conn.commit()
+    cur.close()
     conn.close()
 
 

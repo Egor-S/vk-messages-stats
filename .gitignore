@@ -5,3 +5,4 @@ venv/
 *.pyc
 *.secret
 *.sqlite
+config.json
